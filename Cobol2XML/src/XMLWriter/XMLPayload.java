@@ -59,6 +59,19 @@ public class XMLPayload {
 	
 	public void addElements(Cobol c) {
 		/*
+		 * add commentLine element
+		 */
+		String constantName = c.getConstantName();
+		if (constantName!= null) //if the line is a constant declaration
+		{
+			this.addConstantValueElement(constantName,c.getConstantValue(),c.getLineNumber());
+		}
+		else
+		{
+			//system.out.println("Comment line null")
+		}
+		
+		/*
 		 *  add sectionName element
 		 */		
 		String sectionName = c.getSectionName();
@@ -122,7 +135,38 @@ public class XMLPayload {
 	}
 	
 
- 	void addProgram_IDElement(String stringElement) {
+	
+	
+ 	private void addConstantValueElement(String constantName, double constantValue, int lineNumber)
+	{
+ 		Element cobolname = doc.createElement("constant");
+ 		
+ 		//insert name of constant into XML file
+ 		Element constID = doc.createElement("constant");
+ 		Attr attrtype2 = doc.createAttribute("name");
+ 		attrtype2.setValue(constantName);
+ 		constID.setAttributeNode(attrtype2);
+ 		cobolname.appendChild(constID);
+ 		
+ 		// insert line number of constant into XML file   
+ 		Element lineID = doc.createElement(constantName);   
+ 		Attr attrType = doc.createAttribute("Line_Number" );   
+ 		attrType.setValue( Integer.toString(lineNumber) );   
+ 		lineID.setAttributeNode(attrType);   
+ 		cobolname.appendChild(lineID);       
+ 		
+ 		// insert value of constant into XML file   
+ 		Element constantID = doc.createElement(constantName);   
+ 		Attr attrType1 = doc.createAttribute("Value" );   
+ 		attrType1.setValue( Double.toString(constantValue) );   
+ 		constantID.setAttributeNode(attrType1);   
+ 		cobolname.appendChild(constantID);       
+ 		
+ 		rootElement.appendChild(cobolname); 
+	}
+
+
+	void addProgram_IDElement(String stringElement) {
 		//  Program ID element
 		
 		if(stringElement != null) {

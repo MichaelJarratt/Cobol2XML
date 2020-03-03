@@ -46,6 +46,8 @@ public class CobolParser {
 	public Parser cobol() {
 		Alternation a = new Alternation();
 		
+		a.add( ConstantValue() );
+		
 		Symbol fullstop = new Symbol('.');
 		fullstop.discard();
 		
@@ -61,6 +63,17 @@ public class CobolParser {
 		return a;
 	}
 	
+	private Parser ConstantValue()
+	{
+		Sequence s = new Sequence(); //constant value line composed of
+		s.add(new Num());	//a number
+		s.add(new Word());	//a word
+		s.add(new CaselessLiteral("value")); //a word which can be ignored
+		s.add(new Num());	//a number
+		s.setAssembler(new ConstantValueAssembler());
+		return s;
+	}
+
 	/*
 	 * Return a parser that will recognize the grammar:
 	 * 
