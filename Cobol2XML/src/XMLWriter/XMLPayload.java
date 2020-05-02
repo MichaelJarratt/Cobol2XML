@@ -61,6 +61,15 @@ public class XMLPayload {
 		/*
 		 * add commentLine element
 		 */
+		String commentLine = c.getCommentLine();
+		if (commentLine != null) //if the current line is a comment line
+		{
+			this.addCommentLineElement(commentLine);
+		} //else this line is not a commentLine
+		
+		/*
+		 * add constant element
+		 */
 		String constantName = c.getConstantName();
 		if (constantName!= null) //if the line is a constant declaration
 		{
@@ -176,6 +185,9 @@ public class XMLPayload {
 		}
 	}
  	
+	/*
+	 * creates relevant XML elements and inserts them into document
+	 */
 	void addCommentLineElement(String stringElement) {
 		//  Comment Line element
 		

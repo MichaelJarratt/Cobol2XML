@@ -46,8 +46,6 @@ public class CobolParser {
 	public Parser cobol() {
 		Alternation a = new Alternation();
 		
-		a.add( ConstantValue() );
-		
 		Symbol fullstop = new Symbol('.');
 		fullstop.discard();
 		
@@ -59,11 +57,20 @@ public class CobolParser {
 		
 		a.add( DateWritten() );
 		
+		//our changes
+		
+		a.add( constantValue() );
+		
+		a.add( commentLine());
+		
+		//end of our changes
+		
 		a.add(new Empty());
 		return a;
 	}
 	
-	private Parser ConstantValue()
+	//start of our changes
+	private Parser constantValue()
 	{
 		Sequence s = new Sequence(); //constant value line composed of
 		s.add(new Num());	//a number
@@ -73,6 +80,26 @@ public class CobolParser {
 		s.setAssembler(new ConstantValueAssembler());
 		return s;
 	}
+	
+	/*
+	 * Return a parser that will recognise the grammar:
+	 * 
+	 * 	***___ [comment] 
+	 */
+	private Parser commentLine()
+	{
+		Sequence s = new Sequence(); //sequence that makes up a line of cobol
+		s.add(new Symbol("*")); // first character in sequence
+		s.add(new Symbol("*")); //second
+		s.add(new Symbol("*"));	//third ...
+		s.add(new Symbol("-"));
+		s.add(new Symbol("-"));
+		s.add(new Symbol("-"));
+		s.add(new Word().setAssembler(new CommentLineAssembler()));
+		return s;
+	}
+	
+	//end of our changes
 
 	/*
 	 * Return a parser that will recognize the grammar:
@@ -140,6 +167,9 @@ public class CobolParser {
 		s.setAssembler(new DateAssembler());
 		return s;
 	}
+	
+
+	
 
 
 	/**
