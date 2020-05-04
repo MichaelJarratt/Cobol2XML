@@ -31,7 +31,7 @@ public class EndToEndTests
 	}
 
 	@Test
-	public void testConstantValue() throws Exception
+	public void testConstantValue()
 	{
 		String[] args = new String[2];
 		args[0] = "endToEndTestInput/constantValue.cbl"; //input file
