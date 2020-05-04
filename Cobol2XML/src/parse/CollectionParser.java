@@ -26,7 +26,7 @@ public abstract class CollectionParser extends Parser {
 	/**
 	 * the parsers this parser is a collection of
 	 */
-	protected Vector<Parser> subparsers = new Vector<Parser>();
+	protected Vector<Parser> subparsers = new Vector<Parser>(); //holds parsers given in construction (also has one add method)
 /**
  * Supports subclass constructors with no arguments.
  */

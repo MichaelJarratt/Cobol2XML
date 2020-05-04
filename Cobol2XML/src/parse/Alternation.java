@@ -94,8 +94,8 @@ public void accept(ParserVisitor pv, Vector<Assembly> visited) {
  */
 public Vector<Assembly> match(Vector<Assembly> in) {
 	Vector<Assembly> out = new Vector<Assembly>();
-	Enumeration<Parser> e = subparsers.elements();
-	while (e.hasMoreElements()) {
+	Enumeration<Parser> e = subparsers.elements(); //collection of Sequence - checks if cobol line (assembly in) is matched by any of the sequences
+	while (e.hasMoreElements()) { //goes over collection with enumerator
 		Parser p = e.nextElement();
 		add(out, p.matchAndAssemble(in));
 	}

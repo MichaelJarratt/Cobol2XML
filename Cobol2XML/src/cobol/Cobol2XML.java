@@ -61,7 +61,7 @@ public class Cobol2XML {
 		InputStream is = new FileInputStream(args[0]);
 		BufferedReader r = 	new BufferedReader(new InputStreamReader(is));
 
-		Tokenizer t = CobolParser.tokenizer();
+		Tokenizer t = CobolParser.tokenizer(); //initialised
 		Parser p = CobolParser.start();
 		
 		// Look through source code file line by line
@@ -71,9 +71,9 @@ public class Cobol2XML {
 			if (s == null) {
 				break;
 			}
-			t.setString(s);
-			Assembly in = new TokenAssembly(t);
-			Assembly out = p.bestMatch(in);
+			t.setString(s); //sets line to be tokenized
+			Assembly in = new TokenAssembly(t); //uses tokenizer to create tokenAssembly
+			Assembly out = p.bestMatch(in); //gets TokenAssembly with best matching Cobol Target
 			Cobol c = new Cobol();
 			c = (Cobol) out.getTarget();
 			

@@ -49,7 +49,7 @@ public class CobolParser {
 		Symbol fullstop = new Symbol('.');
 		fullstop.discard();
 		
-		a.add( ProgramID() );
+		a.add( ProgramID() ); //adds Sequence to Alternation
 		
 		a.add( DivisionName() );
 		

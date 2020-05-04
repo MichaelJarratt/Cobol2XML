@@ -124,7 +124,7 @@ public Assembly bestMatch(Assembly a) { //From Cobol2XML
 	//System.out.println("bestMatch()");
 	Vector<Assembly> in = new Vector<Assembly>();
 	in.addElement(a);
-	Vector<Assembly> out = matchAndAssemble(in);
+	Vector<Assembly> out = matchAndAssemble(in); //
 	return best(out);
 }
 /**
