@@ -120,7 +120,7 @@ public Assembly best(Vector<Assembly> v) {
  * @param   Assembly   an assembly to match against
  *
  */
-public Assembly bestMatch(Assembly a) {
+public Assembly bestMatch(Assembly a) { //From Cobol2XML
 	//System.out.println("bestMatch()");
 	Vector<Assembly> in = new Vector<Assembly>();
 	in.addElement(a);
