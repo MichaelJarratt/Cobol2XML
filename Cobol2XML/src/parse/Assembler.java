@@ -37,6 +37,8 @@ public abstract class Assembler {
 	 * This is the one method all subclasses must implement. It 
 	 * specifies what to do when a parser successfully 
 	 * matches against a assembly.
+	 * 
+	 * takes assembly as input and creates a Cobol object which is given to the assembly
 	 *
 	 * @param   Assembly   the assembly to work on
 	 */

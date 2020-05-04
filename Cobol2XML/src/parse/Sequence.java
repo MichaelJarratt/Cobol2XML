@@ -94,7 +94,7 @@ public void accept(ParserVisitor pv, Vector<Assembly> visited) {
  */
 public Vector<Assembly> match(Vector<Assembly> in) {
 	Vector<Assembly> out = in;
-	Enumeration<Parser> e = subparsers.elements();
+	Enumeration<Parser> e = subparsers.elements(); //iterating through tokens
 	while (e.hasMoreElements()) {
 		Parser p = (Parser) e.nextElement();
 		out = p.matchAndAssemble(out);
