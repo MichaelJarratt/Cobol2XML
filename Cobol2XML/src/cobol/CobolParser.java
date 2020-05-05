@@ -178,7 +178,7 @@ public class CobolParser {
 	 * @return the primary parser for this class -- cobol()
 	 */
 	public static Parser start() {
-		return new CobolParser().cobol();
+		return (new CobolParser()).cobol();
 	}
 
 	/**
