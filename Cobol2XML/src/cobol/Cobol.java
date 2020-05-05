@@ -34,9 +34,23 @@ public class Cobol implements PubliclyCloneable {
 	protected String constantName;
 	protected double constantValue;
 	protected int lineNumber = 0;
+	protected String nonContiguousDataItemFormat; //holds the formated of NonCotiguousDataItem
+	protected String nonContiguousDataItemName;
+	protected int pic;
 
 	
-	
+	public int getPic()
+	{
+		return pic;
+	}
+	public String getNonContiguousDataItemName()
+	{
+		return nonContiguousDataItemName;
+	}
+	public String getNonContiguousDataItemFormat()
+	{
+		return nonContiguousDataItemFormat;
+	}
 	public String getConstantName()
 	{
 		return constantName;
@@ -56,6 +70,19 @@ public class Cobol implements PubliclyCloneable {
 	public int getLineNumber()
 	{
 		return lineNumber;
+	}
+	
+	public void setPic(int pic)
+	{
+		this.pic = pic;
+	}
+	public void setnonContiguousDataItemName(String name)
+	{
+		this.nonContiguousDataItemName = name;
+	}
+	public void setNonContiguousDataItemFormat(String format)
+	{
+		this.nonContiguousDataItemFormat = format;
 	}
 	public void setLineNumber(int lineNumber)
 	{

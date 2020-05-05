@@ -61,7 +61,9 @@ public class CobolParser {
 		
 		a.add( constantValue() );
 		
-		a.add( commentLine());
+		a.add( commentLine() );
+		
+		a.add( nonContiguousDataItem() );
 		
 		//end of our changes
 		
@@ -70,6 +72,24 @@ public class CobolParser {
 	}
 	
 	//start of our changes
+
+	/*
+	 * returns a Sequence that will recognise:
+	 * 
+	 *  77 [name] pic [num] [format(word)]
+	 */
+	private Parser nonContiguousDataItem()
+	{
+		Sequence s = new Sequence(); //sequence of tokens this line is made of
+		s.add(new Num()); //line has to start with 77
+		s.add(new Word()); //name of the data item
+		s.add(new CaselessLiteral("pic"));
+		s.add(new Num());
+		s.add(new Symbol('.').discard());
+		s.setAssembler(new NonContiguousDataItemAssembler());
+		return s;
+	}
+	
 	private Parser constantValue()
 	{
 		Sequence s = new Sequence(); //constant value line composed of
