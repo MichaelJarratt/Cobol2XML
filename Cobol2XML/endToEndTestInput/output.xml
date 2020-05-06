@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <cobol>
-<nonContiguousDataItem>
-<nonContiguousDataItem name="rest_divide"/>
-<rest_divide Line_Number="77"/>
-<rest_divide Pic_Value="99"/>
-<rest_divide format="comp-x"/>
-</nonContiguousDataItem>
+<day-date-written>7</day-date-written>
+<month-date-written>jul</month-date-written>
+<year-date-written>1995</year-date-written>
 </cobol>

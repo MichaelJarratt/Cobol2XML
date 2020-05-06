@@ -16,6 +16,10 @@ public class EndToEndTests
 
 	
 	@Test
+	/*
+	 * tests the two types of non contiguous data items, one with a specified format and one without.
+	 * the specified format should be shown and the none specified format should be "default".
+	 */
 	public void testNonContiguousDataItem()
 	{
 		String[] args = new String[2];
@@ -32,7 +36,13 @@ public class EndToEndTests
 			assertTrue(r.readLine().trim().equals("<nonContiguousDataItem name=\"rest_divide\"/>"));
 			assertTrue(r.readLine().trim().equals("<rest_divide Line_Number=\"77\"/>"));
 			assertTrue(r.readLine().trim().equals("<rest_divide Pic_Value=\"99\"/>"));
+			assertTrue(r.readLine().trim().equals("<rest_divide format=\"comp-x\"/>"));
 			assertTrue(r.readLine().trim().equals("</nonContiguousDataItem>"));
+			r.readLine(); //skips lines that will be the same
+			r.readLine();
+			r.readLine();
+			r.readLine();
+			assertTrue(r.readLine().trim().equals("<rest_divide format=\"Default\"/>"));
 			r.close();
 		} catch (Exception e)
 		{
