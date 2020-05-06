@@ -18,14 +18,16 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package parse.tokens;
- public class TokenType {
-	 protected String name;
-/**
- * Creates a token type of the given name.
- */
-public TokenType(String name) {
-	this.name = name;
-}
+
+public class TokenType {
+	protected String name;
+
+	/**
+	 * Creates a token type of the given name.
+	 */
+	public TokenType(String name) {
+		this.name = name;
+	}
 }

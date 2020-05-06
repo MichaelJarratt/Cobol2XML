@@ -9,12 +9,10 @@ import parse.Terminal;
 import parse.tokens.Token;
 import parse.tokens.TokenAssembly;
 
-public class CommentLineAssemblerTest
-{
+public class CommentLineAssemblerTest {
 
 	@Test
-	public void testWorkOn()
-	{
+	public void testWorkOn() {
 		TokenAssembly tokas = new TokenAssembly("***--- comment line here");
 		CommentLineAssembler assembler = new CommentLineAssembler();
 		Terminal terminal = new Terminal();

@@ -28,14 +28,14 @@ import parse.tokens.*;
 
 public class Cobol2XML {
 	/**
-	 * Recognise some basic constructs in a COBOL source code file.
-	 * And then produce a well-formed XML file with the data identified
+	 * Recognise some basic constructs in a COBOL source code file. And then produce
+	 * a well-formed XML file with the data identified
 	 * 
 	 * First command line parameter must be path to cobol source file, such as
 	 * "C:\\Users\\<your user name>\\git\\cobol2xml\\base.cbl"
 	 * 
-	 * Or, when you know exactly where the repository is located and have the file in the right place, simply
-	 * "base.cbl"
+	 * Or, when you know exactly where the repository is located and have the file
+	 * in the right place, simply "base.cbl"
 	 * 
 	 * The quotation marks are required
 	 */
@@ -46,24 +46,26 @@ public class Cobol2XML {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Cobol2XML V0.1.0");
 		XMLPayload xmlp = new XMLPayload();
-		
-		/* The first command line paprameter is used to get the cobol source file namee
-		 * In case you are not sure if you are pointing toward the right file, print out the filename
-		 * like this...
+
+		/*
+		 * The first command line paprameter is used to get the cobol source file namee
+		 * In case you are not sure if you are pointing toward the right file, print out
+		 * the filename like this...
 		 *
 		 * System.out.println("arg[0]" + args[0]);
 		 */
-		
+
 		/*
-		 * A rather crude approach is to hard code the filename for the cobol source file, like this
-		 * InputStream is = new FileInputStream("C:\\Users\\sgs442\\eclipse-workspace\\CobolParser1\\base.cbl");
+		 * A rather crude approach is to hard code the filename for the cobol source
+		 * file, like this InputStream is = new FileInputStream(
+		 * "C:\\Users\\sgs442\\eclipse-workspace\\CobolParser1\\base.cbl");
 		 */
 		InputStream is = new FileInputStream(args[0]);
-		BufferedReader r = 	new BufferedReader(new InputStreamReader(is));
+		BufferedReader r = new BufferedReader(new InputStreamReader(is));
 
-		Tokenizer t = CobolParser.tokenizer(); //initialised
+		Tokenizer t = CobolParser.tokenizer(); // initialised
 		Parser p = CobolParser.start();
-		
+
 		// Look through source code file line by line
 		while (true) {
 			// throws IOException
@@ -71,15 +73,15 @@ public class Cobol2XML {
 			if (s == null) {
 				break;
 			}
-			t.setString(s); //sets line to be tokenized
-			Assembly in = new TokenAssembly(t); //uses tokenizer to create tokenAssembly
-			Assembly out = p.bestMatch(in); //gets TokenAssembly with best matching Cobol Target
+			t.setString(s); // sets line to be tokenized
+			Assembly in = new TokenAssembly(t); // uses tokenizer to create tokenAssembly
+			Assembly out = p.bestMatch(in); // gets TokenAssembly with best matching Cobol Target
 			Cobol c = new Cobol();
 			c = (Cobol) out.getTarget();
-			
-			if(c != null)
-				xmlp.addElements(c); 
-			
+
+			if (c != null)
+				xmlp.addElements(c);
+
 		}
 		xmlp.writeFile(args[1]);
 		r.close();

@@ -18,15 +18,16 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package utensil;
+
 public interface PubliclyCloneable extends Cloneable {
 
-/**
- * A PubliclyCloneable object is one to which any object can send
- * <code>clone()</code>.
- * 
- * @return   a copy of the receiving object
- */
-public Object clone();
+	/**
+	 * A PubliclyCloneable object is one to which any object can send
+	 * <code>clone()</code>.
+	 * 
+	 * @return a copy of the receiving object
+	 */
+	public Object clone();
 }

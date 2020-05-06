@@ -35,77 +35,75 @@ public class Cobol implements PubliclyCloneable {
 	protected double constantValue;
 	protected int lineNumber = 0;
 	protected String displayLine;
-	protected String nonContiguousDataItemFormat; //holds the formated of NonCotiguousDataItem
+	protected String nonContiguousDataItemFormat; // holds the formated of NonCotiguousDataItem
 	protected String nonContiguousDataItemName;
 	protected int pic;
-	protected String format; //the formated for a non contiguous data item
+	protected String format; // the formated for a non contiguous data item
 
-	
-	public String getFormat()
-	{
+	public String getFormat() {
 		return format;
 	}
-	public void setFormat(String format)
-	{
+
+	public void setFormat(String format) {
 		this.format = format;
 	}
-	public int getPic()
-	{
+
+	public int getPic() {
 		return pic;
 	}
-	public String getNonContiguousDataItemName()
-	{
+
+	public String getNonContiguousDataItemName() {
 		return nonContiguousDataItemName;
 	}
-	public String getNonContiguousDataItemFormat()
-	{
+
+	public String getNonContiguousDataItemFormat() {
 		return nonContiguousDataItemFormat;
 	}
-	public String getConstantName()
-	{
+
+	public String getConstantName() {
 		return constantName;
 	}
-	public void setConstantName(String constantName)
-	{
+
+	public void setConstantName(String constantName) {
 		this.constantName = constantName;
 	}
-	public String getDisplayLine()
-	{
+
+	public String getDisplayLine() {
 		return displayLine;
 	}
-	public void setDisplayLine(String displayLine)
-	{
+
+	public void setDisplayLine(String displayLine) {
 		this.displayLine = displayLine;
 	}
-	public double getConstantValue()
-	{
+
+	public double getConstantValue() {
 		return constantValue;
 	}
-	public void setConstantValue(double constantValue)
-	{
+
+	public void setConstantValue(double constantValue) {
 		this.constantValue = constantValue;
 	}
-	public int getLineNumber()
-	{
+
+	public int getLineNumber() {
 		return lineNumber;
 	}
-	
-	public void setPic(int pic)
-	{
+
+	public void setPic(int pic) {
 		this.pic = pic;
 	}
-	public void setnonContiguousDataItemName(String name)
-	{
+
+	public void setnonContiguousDataItemName(String name) {
 		this.nonContiguousDataItemName = name;
 	}
-	public void setNonContiguousDataItemFormat(String format)
-	{
+
+	public void setNonContiguousDataItemFormat(String format) {
 		this.nonContiguousDataItemFormat = format;
 	}
-	public void setLineNumber(int lineNumber)
-	{
+
+	public void setLineNumber(int lineNumber) {
 		this.lineNumber = lineNumber;
 	}
+
 	/**
 	 * Return a copy of this object.
 	 *
@@ -119,17 +117,18 @@ public class Cobol implements PubliclyCloneable {
 			throw new InternalError();
 		}
 	}
+
 	/**
-	 * Compares two objects for equality, treating nulls carefullly,
-	 * and relying on the first object's implementation of <code>
+	 * Compares two objects for equality, treating nulls carefullly, and relying on
+	 * the first object's implementation of <code>
 	 * equals()</code>.
 	 *
-	 * @param   o1   one object
+	 * @param o1 one object
 	 *
-	 * @param   o2   the other
+	 * @param o2 the other
 	 *
-	 * @return  <code>true</code> if the objects are equal and
-	 *          <code>false</code> otherwise.
+	 * @return <code>true</code> if the objects are equal and <code>false</code>
+	 *         otherwise.
 	 */
 	public static boolean equal(Object o1, Object o2) {
 		if (o1 == null || o2 == null) {
@@ -137,32 +136,31 @@ public class Cobol implements PubliclyCloneable {
 		}
 		return o1.equals(o2);
 	}
+
 	/**
-	 * Compares this object against the specified object. The 
-	 * result is <code>true</code> if and only if the argument is 
-	 * not <code>null</code> and is a <code>Coffee</code> object 
-	 * whose attributes all equal this object's attributes.
+	 * Compares this object against the specified object. The result is
+	 * <code>true</code> if and only if the argument is not <code>null</code> and is
+	 * a <code>Coffee</code> object whose attributes all equal this object's
+	 * attributes.
 	 *
-	 * @param   o   the object to compare with.
+	 * @param o the object to compare with.
 	 *
-	 * @return  <code>true</code> if the objects are equal and
-	 *          <code>false</code> otherwise.
+	 * @return <code>true</code> if the objects are equal and <code>false</code>
+	 *         otherwise.
 	 */
 	public boolean equals(Object o) {
 		if (!(o instanceof Cobol)) {
 			return false;
 		}
 		Cobol c = (Cobol) o;
-		
-		
+
 		if (!equal(program_id, c.program_id)) {
 			return false;
 		}
-		
+
 		if (!equal(sectionName, c.sectionName)) {
 			return false;
 		}
-		
 
 		return true;
 	}
@@ -173,10 +171,9 @@ public class Cobol implements PubliclyCloneable {
 	 * @return line of commented text from the COBOL program
 	 */
 	public String getCommentLine() {
-		//System.out.println("getComment()");
+		// System.out.println("getComment()");
 		return commentLine;
 	}
-	
 
 	/**
 	 * Return the name of this COBOL program.
@@ -204,7 +201,7 @@ public class Cobol implements PubliclyCloneable {
 	public String getDivisionName() {
 		return divisionName;
 	}
-	
+
 	/**
 	 * Return the dayDateWritten of this COBOL program.
 	 *
@@ -214,7 +211,6 @@ public class Cobol implements PubliclyCloneable {
 		return dayDateWritten;
 	}
 
-	
 	/**
 	 * Return the monthWritten of this COBOL program.
 	 *
@@ -223,7 +219,7 @@ public class Cobol implements PubliclyCloneable {
 	public String getMonthDateWritten() {
 		return monthDateWritten;
 	}
-	
+
 	/**
 	 * Return the dayDateWritten of this COBOL program.
 	 *
@@ -232,23 +228,21 @@ public class Cobol implements PubliclyCloneable {
 	public int getYearDateWritten() {
 		return yearDateWritten;
 	}
-	
+
 	/**
 	 * Set a line of commented text from the COBOL program.
 	 *
 	 * @return line of commented text from the COBOL program
 	 */
 	public void setCommentLine(String commentLine) {
-		//System.out.println("setComment(): " + commentLine);
+		// System.out.println("setComment(): " + commentLine);
 		this.commentLine = commentLine;
 	}
-
-
 
 	/**
 	 * Set the name of this cobol file.
 	 *
-	 * @param   String   the name
+	 * @param String the name
 	 */
 	public void setProgram_ID(String program_idString) {
 		this.program_id = program_idString;
@@ -262,7 +256,7 @@ public class Cobol implements PubliclyCloneable {
 	public void setDayDateWritten(int dayDateWritten) {
 		this.dayDateWritten = dayDateWritten;
 	}
-	
+
 	/**
 	 * Return the monthWritten of this COBOL program.
 	 *
@@ -271,7 +265,7 @@ public class Cobol implements PubliclyCloneable {
 	public void setMonthDateWritten(String monthDateWritten) {
 		this.monthDateWritten = monthDateWritten;
 	}
-	
+
 	/**
 	 * Set the yearDateWritten of this COBOL program.
 	 *
@@ -280,21 +274,20 @@ public class Cobol implements PubliclyCloneable {
 	public void setYearDateWritten(int yearDateWritten) {
 		this.yearDateWritten = yearDateWritten;
 	}
-	
 
 	/**
-	 * Set the section name 
+	 * Set the section name
 	 *
-	 * @param  String sectionName
+	 * @param String sectionName
 	 */
 	public void setSectionName(String sectionName) {
 		this.sectionName = sectionName;
 	}
-	
+
 	/**
-	 * Set the division name 
+	 * Set the division name
 	 *
-	 * @param  String divisionName
+	 * @param String divisionName
 	 */
 	public void setDivisionName(String divisionName) {
 		this.divisionName = divisionName;
@@ -312,12 +305,11 @@ public class Cobol implements PubliclyCloneable {
 		buf.append(divisionName);
 		buf.append(", ");
 		buf.append(sectionName);
-		
+
 		return buf.toString();
 	}
-	
-	public void prependToDisplayLine(String s) 
-	{
-		displayLine = (s+" ")+displayLine;
+
+	public void prependToDisplayLine(String s) {
+		displayLine = (s + " ") + displayLine;
 	}
 }

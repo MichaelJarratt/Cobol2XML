@@ -18,24 +18,22 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package parse.tokens;
 
 import java.io.*;
+
 public class SlashSlashState extends TokenizerState {
-/**
- * Ignore everything up to an end-of-line and return the 
- * tokenizer's next token.
- *
- * @return the tokenizer's next token
- */
-public Token nextToken(
-	PushbackReader r, int theSlash, Tokenizer t)
-	throws IOException {
-		
-	int c;
-	while ((c = r.read()) != '\n' && c != '\r' && c >= 0) {
+	/**
+	 * Ignore everything up to an end-of-line and return the tokenizer's next token.
+	 *
+	 * @return the tokenizer's next token
+	 */
+	public Token nextToken(PushbackReader r, int theSlash, Tokenizer t) throws IOException {
+
+		int c;
+		while ((c = r.read()) != '\n' && c != '\r' && c >= 0) {
+		}
+		return t.nextToken();
 	}
-	return t.nextToken();
-}
 }

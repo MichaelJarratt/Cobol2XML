@@ -18,45 +18,46 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package parse;
 
 import java.util.*;
+
 public class Empty extends Parser {
-/**
- * Accept a "visitor" and a collection of previously visited
- * parsers.
- *
- * @param   ParserVisitor   the visitor to accept
- *
- * @param   Vector   a collection of previously visited parsers
- */
-public void accept(ParserVisitor pv, Vector<Assembly> visited) {
-	pv.visitEmpty(this, visited);
-}
-/**
- * Given a set of assemblies, this method returns the set as
- * a successful match.
- * 
- * @return   the input set of states
- *
- * @param   Vector   a vector of assemblies to match against
- *
- */
-public Vector<Assembly> match(Vector<Assembly> in) {
-	return elementClone(in);
-}
-/*
- * There really is no way to expand an empty parser, so
- * return an empty vector.
- */
-protected Vector<Assembly> randomExpansion(int maxDepth, int depth) {
-	return new Vector<Assembly>();
-}
-/*
- * Returns a textual description of this parser.
- */
- protected String unvisitedString(Vector<Parser> visited) {
-	return " empty ";
-}
+	/**
+	 * Accept a "visitor" and a collection of previously visited parsers.
+	 *
+	 * @param ParserVisitor the visitor to accept
+	 *
+	 * @param Vector        a collection of previously visited parsers
+	 */
+	public void accept(ParserVisitor pv, Vector<Assembly> visited) {
+		pv.visitEmpty(this, visited);
+	}
+
+	/**
+	 * Given a set of assemblies, this method returns the set as a successful match.
+	 * 
+	 * @return the input set of states
+	 *
+	 * @param Vector a vector of assemblies to match against
+	 *
+	 */
+	public Vector<Assembly> match(Vector<Assembly> in) {
+		return elementClone(in);
+	}
+
+	/*
+	 * There really is no way to expand an empty parser, so return an empty vector.
+	 */
+	protected Vector<Assembly> randomExpansion(int maxDepth, int depth) {
+		return new Vector<Assembly>();
+	}
+
+	/*
+	 * Returns a textual description of this parser.
+	 */
+	protected String unvisitedString(Vector<Parser> visited) {
+		return " empty ";
+	}
 }

@@ -18,56 +18,59 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package parse;
 
 import java.util.*;
+
 public abstract class ParserVisitor {
-/**
- * Visit an alternation.
- *
- * @param   Alternation   the parser to visit
- *
- * @param   Vector   a collection of previously visited parsers
- *
- */
-public abstract void visitAlternation(
-	Alternation a, Vector<Assembly> visited);
-/**
- * Visit an empty parser.
- *
- * @param   Empty   the parser to visit
- *
- * @param   Vector   a collection of previously visited parsers
- *
- */
-public abstract void visitEmpty(Empty e, Vector<Assembly> visited);
-/**
- * Visit a repetition.
- *
- * @param   Repetition   the parser to visit
- *
- * @param   Vector   a collection of previously visited parsers
- *
- */
-public abstract void visitRepetition(
-	Repetition r, Vector<Assembly> visited);
-/**
- * Visit a sequence.
- *
- * @param   Sequence   the parser to visit
- *
- * @param   Vector   a collection of previously visited parsers
- *
- */
-public abstract void visitSequence(Sequence s, Vector<Assembly> visited);
-/**
- * Visit a terminal.
- *
- * @param   Terminal   the parser to visit
- *
- * @param   Vector   a collection of previously visited parsers
- *
- */
-public abstract void visitTerminal(Terminal t, Vector<Assembly> visited);
+	/**
+	 * Visit an alternation.
+	 *
+	 * @param Alternation the parser to visit
+	 *
+	 * @param Vector      a collection of previously visited parsers
+	 *
+	 */
+	public abstract void visitAlternation(Alternation a, Vector<Assembly> visited);
+
+	/**
+	 * Visit an empty parser.
+	 *
+	 * @param Empty  the parser to visit
+	 *
+	 * @param Vector a collection of previously visited parsers
+	 *
+	 */
+	public abstract void visitEmpty(Empty e, Vector<Assembly> visited);
+
+	/**
+	 * Visit a repetition.
+	 *
+	 * @param Repetition the parser to visit
+	 *
+	 * @param Vector     a collection of previously visited parsers
+	 *
+	 */
+	public abstract void visitRepetition(Repetition r, Vector<Assembly> visited);
+
+	/**
+	 * Visit a sequence.
+	 *
+	 * @param Sequence the parser to visit
+	 *
+	 * @param Vector   a collection of previously visited parsers
+	 *
+	 */
+	public abstract void visitSequence(Sequence s, Vector<Assembly> visited);
+
+	/**
+	 * Visit a terminal.
+	 *
+	 * @param Terminal the parser to visit
+	 *
+	 * @param Vector   a collection of previously visited parsers
+	 *
+	 */
+	public abstract void visitTerminal(Terminal t, Vector<Assembly> visited);
 }

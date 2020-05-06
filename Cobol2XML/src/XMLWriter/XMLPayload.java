@@ -17,7 +17,8 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- */package XMLWriter;
+ */
+package XMLWriter;
 
 import cobol.*;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,253 +38,243 @@ import org.w3c.dom.Element;
 public class XMLPayload {
 	Document doc;
 	Element rootElement;
-	
+
 	public XMLPayload() {
 		try {
-		DocumentBuilderFactory dbFactory =
-		         DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = 
-		            dbFactory.newDocumentBuilder();
-		doc = dBuilder.newDocument();
-		
-		 // root element
-        rootElement = doc.createElement("cobol");
-        doc.appendChild(rootElement);
-		
-		 } catch (Exception e) {
-	         e.printStackTrace();
-	     }
-		
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			doc = dBuilder.newDocument();
+
+			// root element
+			rootElement = doc.createElement("cobol");
+			doc.appendChild(rootElement);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
-	
-	
+
 	public void addElements(Cobol c) {
-		
-		
+
 		String nonContiguousDataItemName = c.getNonContiguousDataItemName();
-		if(nonContiguousDataItemName != null) //if this line represents a nonContiguousDataItem
+		if (nonContiguousDataItemName != null) // if this line represents a nonContiguousDataItem
 		{
-			this.addNonContiguousDataItem(c.getLineNumber(),nonContiguousDataItemName,c.getPic(),c.getFormat());
+			this.addNonContiguousDataItem(c.getLineNumber(), nonContiguousDataItemName, c.getPic(), c.getFormat());
 		}
 		/*
 		 * add display line
 		 */
 		String displayLine = c.getDisplayLine();
-		if (displayLine != null)
-		{
+		if (displayLine != null) {
 			this.addDisplayElement(displayLine);
 		}
 		/*
 		 * add commentLine element
 		 */
 		String commentLine = c.getCommentLine();
-		if (commentLine != null) //if the current line is a comment line
+		if (commentLine != null) // if the current line is a comment line
 		{
 			this.addCommentLineElement(commentLine);
-		} //else this line is not a commentLine
-		
+		} // else this line is not a commentLine
+
 		/*
 		 * add constant element
 		 */
 		String constantName = c.getConstantName();
-		if (constantName!= null) //if the line is a constant declaration
+		if (constantName != null) // if the line is a constant declaration
 		{
-			this.addConstantValueElement(constantName,c.getConstantValue(),c.getLineNumber());
+			this.addConstantValueElement(constantName, c.getConstantValue(), c.getLineNumber());
+		} else {
+			// system.out.println("Comment line null")
 		}
-		else
-		{
-			//system.out.println("Comment line null")
-		}
-		
+
 		/*
-		 *  add sectionName element
-		 */		
+		 * add sectionName element
+		 */
 		String sectionName = c.getSectionName();
 		if (sectionName != null) {
-			this.addSectionElement( sectionName );
-			//System.out.println("Got Section");
+			this.addSectionElement(sectionName);
+			// System.out.println("Got Section");
 			// Add contents of procedure division
 		} else {
-			//System.out.println("Section Name null");
+			// System.out.println("Section Name null");
 		}
-		
+
 		/*
-		 *  add divisionName element
-		 */		
+		 * add divisionName element
+		 */
 		String divisionName = c.getDivisionName();
 		if (divisionName != null) {
-			this.addDivisionElement( divisionName );
-			//System.out.println("Got Section");
+			this.addDivisionElement(divisionName);
+			// System.out.println("Got Section");
 			// Add contents of procedure division
 		} else {
-			//System.out.println("Division Name null");
+			// System.out.println("Division Name null");
 		}
-		
+
 		/*
-		 *  add ProgramID element
-		 */		
+		 * add ProgramID element
+		 */
 		String programIDName = c.getProgram_ID();
 		if (programIDName != null) {
-			this.addProgram_IDElement( programIDName );
-			//System.out.println("Got Section");
+			this.addProgram_IDElement(programIDName);
+			// System.out.println("Got Section");
 			// Add contents of procedure division
 		} else {
-			//System.out.println("Section Name null");
+			// System.out.println("Section Name null");
 		}
-		
+
 		/*
-		 *  add DateWritten element
-		 */	
+		 * add DateWritten element
+		 */
 		// DayDateWritten
 		int dayDateWritten = c.getDayDateWritten();
-		if(dayDateWritten != 0) {
-			this.addDayDateWrittenElement( dayDateWritten );
+		if (dayDateWritten != 0) {
+			this.addDayDateWrittenElement(dayDateWritten);
 		}
-		
-		//MonthDateWritten
+
+		// MonthDateWritten
 		String monthDateWritten = c.getMonthDateWritten();
 		if (monthDateWritten != null) {
-			this.addMonthDateWrittenElement( monthDateWritten );
-			//System.out.println("Got Section");
+			this.addMonthDateWrittenElement(monthDateWritten);
+			// System.out.println("Got Section");
 			// Add contents of procedure division
 		} else {
-			//System.out.println("Section Name null");
+			// System.out.println("Section Name null");
 		}
 
 		// YearDateWritten
 		int yearDateWritten = c.getYearDateWritten();
-		if(yearDateWritten != 0) {
-			this.addYearDateWrittenElement( yearDateWritten );
+		if (yearDateWritten != 0) {
+			this.addYearDateWrittenElement(yearDateWritten);
 		}
 
 	}
-	
+
 	/*
 	 * generates XML for nonContiguousDataItem
 	 */
- 	private void addNonContiguousDataItem(int lineNumber, String name, int pic,String format)
-	{
-		Element cobolName = doc.createElement("nonContiguousDataItem"); //element holding all information for nonContiguousDataItem
-		
-		//name of line
+	private void addNonContiguousDataItem(int lineNumber, String name, int pic, String format) {
+		Element cobolName = doc.createElement("nonContiguousDataItem"); // element holding all information for
+																		// nonContiguousDataItem
+
+		// name of line
 		Element nonContiguousDataItemID = doc.createElement("nonContiguousDataItem");
-		nonContiguousDataItemID.setAttribute("name", name); //sets name attribute
-		cobolName.appendChild(nonContiguousDataItemID); //appends name element to parent
-		
-		//line number
+		nonContiguousDataItemID.setAttribute("name", name); // sets name attribute
+		cobolName.appendChild(nonContiguousDataItemID); // appends name element to parent
+
+		// line number
 		Element LineID = doc.createElement(name);
-		LineID.setAttribute("Line_Number", ""+lineNumber);
+		LineID.setAttribute("Line_Number", "" + lineNumber);
 		cobolName.appendChild(LineID);
-		
-		//pic value
+
+		// pic value
 		Element picID = doc.createElement(name);
-		picID.setAttribute("Pic_Value", ""+pic);
+		picID.setAttribute("Pic_Value", "" + pic);
 		cobolName.appendChild(picID);
-		
+
 		Element formatID = doc.createElement(name);
 		formatID.setAttribute("format", format);
 		cobolName.appendChild(formatID);
-		
+
 		rootElement.appendChild(cobolName);
 	}
 
+	private void addConstantValueElement(String constantName, double constantValue, int lineNumber) {
+		Element cobolname = doc.createElement("constant");
 
-	private void addConstantValueElement(String constantName, double constantValue, int lineNumber)
-	{
- 		Element cobolname = doc.createElement("constant");
- 		
- 		//insert name of constant into XML file
- 		Element constID = doc.createElement("constant");
- 		Attr attrtype2 = doc.createAttribute("name");
- 		attrtype2.setValue(constantName);
- 		constID.setAttributeNode(attrtype2);
- 		cobolname.appendChild(constID);
- 		
- 		// insert line number of constant into XML file   
- 		Element lineID = doc.createElement(constantName);   
- 		Attr attrType = doc.createAttribute("Line_Number" );   
- 		attrType.setValue( Integer.toString(lineNumber) );   
- 		lineID.setAttributeNode(attrType);   
- 		cobolname.appendChild(lineID);       
- 		
- 		// insert value of constant into XML file   
- 		Element constantID = doc.createElement(constantName);   
- 		Attr attrType1 = doc.createAttribute("Value" );   
- 		attrType1.setValue( Double.toString(constantValue) );   
- 		constantID.setAttributeNode(attrType1);   
- 		cobolname.appendChild(constantID);       
- 		
- 		rootElement.appendChild(cobolname); 
+		// insert name of constant into XML file
+		Element constID = doc.createElement("constant");
+		Attr attrtype2 = doc.createAttribute("name");
+		attrtype2.setValue(constantName);
+		constID.setAttributeNode(attrtype2);
+		cobolname.appendChild(constID);
+
+		// insert line number of constant into XML file
+		Element lineID = doc.createElement(constantName);
+		Attr attrType = doc.createAttribute("Line_Number");
+		attrType.setValue(Integer.toString(lineNumber));
+		lineID.setAttributeNode(attrType);
+		cobolname.appendChild(lineID);
+
+		// insert value of constant into XML file
+		Element constantID = doc.createElement(constantName);
+		Attr attrType1 = doc.createAttribute("Value");
+		attrType1.setValue(Double.toString(constantValue));
+		constantID.setAttributeNode(attrType1);
+		cobolname.appendChild(constantID);
+
+		rootElement.appendChild(cobolname);
 	}
 
-
 	void addProgram_IDElement(String stringElement) {
-		//  Program ID element
-		
-		if(stringElement != null) {
+		// Program ID element
+
+		if (stringElement != null) {
 			Element cobolname = doc.createElement("Program-ID");
 			cobolname.appendChild(doc.createTextNode(stringElement));
 			rootElement.appendChild(cobolname);
 		}
 	}
- 	
+
 	/*
 	 * creates relevant XML elements and inserts them into document
 	 */
 	void addCommentLineElement(String stringElement) {
-		//  Comment Line element
-		
-		if(stringElement != null) {
+		// Comment Line element
+
+		if (stringElement != null) {
 			Element cobolname = doc.createElement("comment");
 			cobolname.appendChild(doc.createTextNode(stringElement));
 			rootElement.appendChild(cobolname);
 		}
 	}
- 	
- 	void addDisplayElement(String stringElement) {
- 		// display element
- 		
- 		if(stringElement != null) {
- 			Element cobolname = doc.createElement("display");
- 			cobolname.appendChild(doc.createTextNode(stringElement));
- 			rootElement.appendChild(cobolname);
- 		}
- 	}
- 	
- 	void addSectionElement(String stringElement) {
-		//  Section element
-		
-		if(stringElement != null) {
+
+	void addDisplayElement(String stringElement) {
+		// display element
+
+		if (stringElement != null) {
+			Element cobolname = doc.createElement("display");
+			cobolname.appendChild(doc.createTextNode(stringElement));
+			rootElement.appendChild(cobolname);
+		}
+	}
+
+	void addSectionElement(String stringElement) {
+		// Section element
+
+		if (stringElement != null) {
 			Element cobolname = doc.createElement("section");
 			cobolname.appendChild(doc.createTextNode(stringElement));
 			rootElement.appendChild(cobolname);
 		}
 	}
- 	
- 	void addDivisionElement(String stringElement) {
-		//  Division element
-		if(stringElement != null) {
+
+	void addDivisionElement(String stringElement) {
+		// Division element
+		if (stringElement != null) {
 			Element cobolname = doc.createElement("division");
 			cobolname.appendChild(doc.createTextNode(stringElement));
 			rootElement.appendChild(cobolname);
 		}
 	}
-	
+
 	void addDayDateWrittenElement(int intElement) {
-		//  DayDateWritten element
-		
-		if(intElement != 0) {
+		// DayDateWritten element
+
+		if (intElement != 0) {
 			Element cobolname = doc.createElement("day-date-written");
 			String s = "" + intElement;
 			cobolname.appendChild(doc.createTextNode(s));
 			rootElement.appendChild(cobolname);
 		}
 	}
- 	
+
 	void addMonthDateWrittenElement(String stringElement) {
-		//  MonthWritten element
-		
-		if(stringElement != null) {
+		// MonthWritten element
+
+		if (stringElement != null) {
 			Element cobolname = doc.createElement("month-date-written");
 			cobolname.appendChild(doc.createTextNode(stringElement));
 			rootElement.appendChild(cobolname);
@@ -291,39 +282,36 @@ public class XMLPayload {
 	}
 
 	void addYearDateWrittenElement(int intElement) {
-		//  YearDateWritten element
-		
-		if(intElement != 0) {
+		// YearDateWritten element
+
+		if (intElement != 0) {
 			Element cobolname = doc.createElement("year-date-written");
 			String s = "" + intElement;
 			cobolname.appendChild(doc.createTextNode(s));
 			rootElement.appendChild(cobolname);
 		}
 	}
-	
+
 	public void writeFile(String filename) {
 		try {
-		// write the content into xml file
-		// System.out.println("WriteFile Filename: " + filename);
-        TransformerFactory transformerFactory =
-        TransformerFactory.newInstance();
-        Transformer transformer =
-        transformerFactory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        DOMSource source = new DOMSource(doc);
-        
-        StreamResult result =
-                new StreamResult(new File(filename));
-        transformer.transform(source, result);
-        
-        // Output to console for testing
-        StreamResult consoleResult = new StreamResult(System.out);
-        transformer.transform(source, consoleResult);
-        
-		 } catch (Exception e) {
-	         e.printStackTrace();
-	     }
+			// write the content into xml file
+			// System.out.println("WriteFile Filename: " + filename);
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			DOMSource source = new DOMSource(doc);
+
+			StreamResult result = new StreamResult(new File(filename));
+			transformer.transform(source, result);
+
+			// Output to console for testing
+			StreamResult consoleResult = new StreamResult(System.out);
+			transformer.transform(source, consoleResult);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -5,5 +5,4 @@
     <display>"Value: " no</display>
     <display>"Decimal  value: " entry_char</display>
     <display>"Base: " current_base</display>
-    <display>testing other</display>
 </cobol>

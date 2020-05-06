@@ -2,12 +2,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class CobolTest
-{
+public class CobolTest {
 
 	@Test
-	public void test()
-	{
+	public void test() {
 		assertTrue(true);
 	}
 
