@@ -21,11 +21,7 @@ public class AlternationTest
 		CobolParser cobolParser = new CobolParser(); //is responsible for creation of Alternations
 		Alternation alternation = (Alternation) CobolParser.start(); //creates new Alternation with sequences
 		Vector<Parser> subparsers = alternation.getSubparsers(); //gets Sequences from Alternation
-<<<<<<< HEAD
-		assertTrue(subparsers.size() == 7); //number is incremented when new types of sequences are implemented
-=======
 		assertTrue(subparsers.size() == 8);
->>>>>>> 214ea453e1f05a2c0b8b43734e5fe367af33f76d
 	}
 
 }
