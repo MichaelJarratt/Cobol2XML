@@ -21,12 +21,10 @@
 package cobol;
 
 import parse.Alternation;
-import parse.Repetition;
 import parse.Empty;
 import parse.Parser;
 import parse.Sequence;
 import parse.tokens.CaselessLiteral;
-import parse.tokens.Literal;
 import parse.tokens.Num;
 import parse.tokens.QuotedString;
 import parse.tokens.Symbol;
@@ -62,7 +60,7 @@ public class CobolParser {
 		
 		a.add( DisplayLine() );
 		
-		a.add( DisplayLineExtra() );
+		a.add( DisplayLineQuotedText() );
 		
 		a.add( constantValue() );
 		
@@ -88,7 +86,7 @@ public class CobolParser {
 		return s;
 	}
 	
-	private Parser DisplayLineExtra() 
+	private Parser DisplayLineQuotedText() 
 	{
 		Sequence s = new Sequence(); //display line composed of
 		s.add(new CaselessLiteral("display").discard()); //a word which can be ignored
