@@ -34,6 +34,7 @@ public class Cobol implements PubliclyCloneable {
 	protected String constantName;
 	protected double constantValue;
 	protected int lineNumber = 0;
+	protected String displayLine;
 
 	
 	
@@ -44,6 +45,14 @@ public class Cobol implements PubliclyCloneable {
 	public void setConstantName(String constantName)
 	{
 		this.constantName = constantName;
+	}
+	public String getDisplayLine()
+	{
+		return displayLine;
+	}
+	public void setDisplayLine(String displayLine)
+	{
+		this.displayLine = displayLine;
 	}
 	public double getConstantValue()
 	{
@@ -269,5 +278,10 @@ public class Cobol implements PubliclyCloneable {
 		buf.append(sectionName);
 		
 		return buf.toString();
+	}
+	
+	public void prependToDisplayLine(String s) 
+	{
+		displayLine = (s+" ")+displayLine;
 	}
 }

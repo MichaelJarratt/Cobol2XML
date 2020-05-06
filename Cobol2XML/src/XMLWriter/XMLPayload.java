@@ -59,6 +59,14 @@ public class XMLPayload {
 	
 	public void addElements(Cobol c) {
 		/*
+		 * add display line
+		 */
+		String displayLine = c.getDisplayLine();
+		if (displayLine != null)
+		{
+			this.addDisplayElement(displayLine);
+		}
+		/*
 		 * add commentLine element
 		 */
 		String commentLine = c.getCommentLine();
@@ -198,7 +206,15 @@ public class XMLPayload {
 		}
 	}
  	
- 	
+ 	void addDisplayElement(String stringElement) {
+ 		// display element
+ 		
+ 		if(stringElement != null) {
+ 			Element cobolname = doc.createElement("display");
+ 			cobolname.appendChild(doc.createTextNode(stringElement));
+ 			rootElement.appendChild(cobolname);
+ 		}
+ 	}
  	
  	void addSectionElement(String stringElement) {
 		//  Section element

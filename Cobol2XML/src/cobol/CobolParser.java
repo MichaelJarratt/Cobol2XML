@@ -28,6 +28,7 @@ import parse.Sequence;
 import parse.tokens.CaselessLiteral;
 import parse.tokens.Literal;
 import parse.tokens.Num;
+import parse.tokens.QuotedString;
 import parse.tokens.Symbol;
 import parse.tokens.Tokenizer;
 import parse.tokens.Word;
@@ -59,6 +60,10 @@ public class CobolParser {
 		
 		//our changes
 		
+		a.add( DisplayLine() );
+		
+		a.add( DisplayLineExtra() );
+		
 		a.add( constantValue() );
 		
 		a.add( commentLine());
@@ -70,6 +75,24 @@ public class CobolParser {
 	}
 	
 	//start of our changes
+	private Parser DisplayLine() 
+	{
+		Sequence s = new Sequence(); //display line composed of
+		s.add(new CaselessLiteral("display").discard()); //a word which can be ignored
+		s.add(new Word());
+		s.add(new Word().setAssembler(new DisplayLineAssembler())); //a random assortment of strings after it
+		return s;
+	}
+	
+	private Parser DisplayLineExtra() 
+	{
+		Sequence s = new Sequence(); //display line composed of
+		s.add(new CaselessLiteral("display").discard()); //a word which can be ignored
+		s.add(new QuotedString());
+		s.add(new Word().setAssembler(new DisplayLineAssembler())); //a random assortment of strings after it
+		return s;
+	}
+	
 	private Parser constantValue()
 	{
 		Sequence s = new Sequence(); //constant value line composed of
