@@ -18,22 +18,23 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package parse.tokens;
 
 import parse.*;
 
 public class TokenTester extends ParserTester {
-/**
- * 
- */
-public TokenTester(Parser p) {
-	super(p);
-}
-/**
- * assembly method comment.
- */
-protected Assembly assembly(String s) {
-	return new TokenAssembly(s);
-}
+	/**
+	 * 
+	 */
+	public TokenTester(Parser p) {
+		super(p);
+	}
+
+	/**
+	 * assembly method comment.
+	 */
+	protected Assembly assembly(String s) {
+		return new TokenAssembly(s);
+	}
 }

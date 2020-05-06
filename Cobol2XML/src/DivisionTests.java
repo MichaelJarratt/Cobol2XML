@@ -9,22 +9,20 @@ import parse.Parser;
 import parse.tokens.TokenAssembly;
 import parse.tokens.Tokenizer;
 
-public class DivisionTests
-{
+public class DivisionTests {
 
 	@Test
-	public void testDivisionID()
-	{
+	public void testDivisionID() {
 		Tokenizer t = CobolParser.tokenizer();
-		Parser p = CobolParser.start(); 
-		
+		Parser p = CobolParser.start();
+
 		t.setString("identification Division.");
 		Assembly in = new TokenAssembly(t);
 		Assembly out = p.bestMatch(in);
-		
+
 		Cobol c = new Cobol();
 		c = (Cobol) out.getTarget();
-		
+
 		assertEquals(c.getDivisionName(), "identification");
-	}	
+	}
 }

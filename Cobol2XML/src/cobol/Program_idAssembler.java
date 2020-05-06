@@ -18,22 +18,22 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package cobol;
 
 import parse.*;
 import parse.tokens.*;
+
 public class Program_idAssembler extends Assembler {
-/**
- * Pop a string, and set the target Program_ID to this
- * string.
- *
- * @param   Assembly   the assembly to work on
- */
-public void workOn(Assembly a) {
-	Cobol c = new Cobol();
-	Token t = (Token) a.pop();
-	c.setProgram_ID(t.sval().trim());
-	a.setTarget(c);
-}
+	/**
+	 * Pop a string, and set the target Program_ID to this string.
+	 *
+	 * @param Assembly the assembly to work on
+	 */
+	public void workOn(Assembly a) {
+		Cobol c = new Cobol();
+		Token t = (Token) a.pop();
+		c.setProgram_ID(t.sval().trim());
+		a.setTarget(c);
+	}
 }

@@ -18,30 +18,29 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package parse.tokens;
 
 import java.io.*;
+
 public class SlashStarState extends TokenizerState {
-/**
- * Ignore everything up to a closing star and slash, and 
- * then return the tokenizer's next token.
- *
- * @return the tokenizer's next token
- */
-public Token nextToken(
-	PushbackReader r, int theStar, Tokenizer t) 
-	throws IOException {
-		
-	int c = 0;
-	int lastc = 0;
-	while (c >= 0) {
-		if ((lastc == '*') && (c == '/')) {
-			break;
+	/**
+	 * Ignore everything up to a closing star and slash, and then return the
+	 * tokenizer's next token.
+	 *
+	 * @return the tokenizer's next token
+	 */
+	public Token nextToken(PushbackReader r, int theStar, Tokenizer t) throws IOException {
+
+		int c = 0;
+		int lastc = 0;
+		while (c >= 0) {
+			if ((lastc == '*') && (c == '/')) {
+				break;
+			}
+			lastc = c;
+			c = r.read();
 		}
-		lastc = c;
-		c = r.read();
+		return t.nextToken();
 	}
-	return t.nextToken();
-}
 }

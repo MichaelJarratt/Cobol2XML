@@ -18,28 +18,26 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 package parse.tokens;
 
 import java.io.*;
+
 public abstract class TokenizerState {
-/**
- * Return a token that represents a logical piece of a reader.
- * 
- * @return  a token that represents a logical piece of the 
- *          reader
- *
- * @param   PushbackReader   a reader to read from
- *
- * @param   c   the character that a tokenizer used to 
- *              determine to use this state
- *
- * @param   Tokenizer   the tokenizer conducting the overall
- *                      tokenization of the reader
- *
- * @exception   IOException   if there is any problem reading
- */
-public abstract Token nextToken(
-	PushbackReader r, int c, Tokenizer t)
-	throws IOException;
+	/**
+	 * Return a token that represents a logical piece of a reader.
+	 * 
+	 * @return a token that represents a logical piece of the reader
+	 *
+	 * @param PushbackReader a reader to read from
+	 *
+	 * @param c              the character that a tokenizer used to determine to use
+	 *                       this state
+	 *
+	 * @param Tokenizer      the tokenizer conducting the overall tokenization of
+	 *                       the reader
+	 *
+	 * @exception IOException if there is any problem reading
+	 */
+	public abstract Token nextToken(PushbackReader r, int c, Tokenizer t) throws IOException;
 }
