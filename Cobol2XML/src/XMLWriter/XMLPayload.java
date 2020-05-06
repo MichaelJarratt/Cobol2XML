@@ -63,7 +63,7 @@ public class XMLPayload {
 		String nonContiguousDataItemName = c.getNonContiguousDataItemName();
 		if(nonContiguousDataItemName != null) //if this line represents a nonContiguousDataItem
 		{
-			this.addNonContiguousDataItem(c.getLineNumber(),nonContiguousDataItemName,c.getPic());
+			this.addNonContiguousDataItem(c.getLineNumber(),nonContiguousDataItemName,c.getPic(),c.getFormat());
 		}
 		/*
 		 * add commentLine element
@@ -153,7 +153,7 @@ public class XMLPayload {
 	/*
 	 * generates XML for nonContiguousDataItem
 	 */
- 	private void addNonContiguousDataItem(int lineNumber, String name, int pic)
+ 	private void addNonContiguousDataItem(int lineNumber, String name, int pic,String format)
 	{
 		Element cobolName = doc.createElement("nonContiguousDataItem"); //element holding all information for nonContiguousDataItem
 		
@@ -171,6 +171,10 @@ public class XMLPayload {
 		Element picID = doc.createElement(name);
 		picID.setAttribute("Pic_Value", ""+pic);
 		cobolName.appendChild(picID);
+		
+		Element formatID = doc.createElement(name);
+		formatID.setAttribute("format", format);
+		cobolName.appendChild(formatID);
 		
 		rootElement.appendChild(cobolName);
 	}

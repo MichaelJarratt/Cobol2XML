@@ -106,6 +106,7 @@ public class TokenAssembly extends Assembly{
 			return null;
 		}
 	}
+	
 	/**
 	 * Returns a textual representation of the amount of this 
 	 * tokenAssembly that remains to be consumed.

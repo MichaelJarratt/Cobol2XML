@@ -139,6 +139,15 @@ public abstract class Assembly implements Enumeration<Object>, PubliclyCloneable
 		stack.push(o);
 	}
 	/**
+	 * shows the next object in the stack, without removing it
+	 * 
+	 * @return the next object in the stack
+	 */
+	public Object peekStack()
+	{
+		return stack.peek();
+	}
+	/**
 	 * Returns the elements of the assembly that remain to be 
 	 * consumed, separated by the specified delimiter.
 	 *

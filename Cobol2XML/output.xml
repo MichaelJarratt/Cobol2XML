@@ -7,6 +7,36 @@
 <year-date-written>1995</year-date-written>
 <division>data</division>
 <section>working-storage</section>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="ind"/>
+<ind Line_Number="77"/>
+<ind Pic_Value="99"/>
+<ind format="comp-x"/>
+</nonContiguousDataItem>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="rest_divide"/>
+<rest_divide Line_Number="77"/>
+<rest_divide Pic_Value="99"/>
+<rest_divide format="Default"/>
+</nonContiguousDataItem>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="w_number"/>
+<w_number Line_Number="1"/>
+<w_number Pic_Value="9"/>
+<w_number format="Default"/>
+</nonContiguousDataItem>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="entry_number"/>
+<entry_number Line_Number="1"/>
+<entry_number Pic_Value="9"/>
+<entry_number format="Default"/>
+</nonContiguousDataItem>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="current_base"/>
+<current_base Line_Number="1"/>
+<current_base Pic_Value="9"/>
+<current_base format="Default"/>
+</nonContiguousDataItem>
 <constant>
 <constant name="base_2"/>
 <base_2 Line_Number="88"/>
@@ -27,6 +57,12 @@
 <base_16 Line_Number="88"/>
 <base_16 Value="16.0"/>
 </constant>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="dec_value"/>
+<dec_value Line_Number="5"/>
+<dec_value Pic_Value="99"/>
+<dec_value format="Default"/>
+</nonContiguousDataItem>
 <division>procedure</division>
 <comment>convert from decimal to base system</comment>
 <comment>convert from base to dicimal system</comment>

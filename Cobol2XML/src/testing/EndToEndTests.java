@@ -14,6 +14,32 @@ import cobol.Cobol2XML;
 public class EndToEndTests
 {
 
+	
+	@Test
+	public void testNonContiguousDataItem()
+	{
+		String[] args = new String[2];
+		args[0] = "endToEndTestInput/nonContiguousDataItem.cbl"; //input file
+		args[1] = "endToEndTestInput/output.xml"; //output file
+		try
+		{
+			Cobol2XML.main(args);
+			InputStream is = new FileInputStream(args[1]); //reads from output file
+			BufferedReader r = 	new BufferedReader(new InputStreamReader(is));
+			r.readLine();
+			r.readLine(); //skips two lines because they will always be generated regardless
+			assertTrue(r.readLine().trim().equals("<nonContiguousDataItem>")); 
+			assertTrue(r.readLine().trim().equals("<nonContiguousDataItem name=\"rest_divide\"/>"));
+			assertTrue(r.readLine().trim().equals("<rest_divide Line_Number=\"77\"/>"));
+			assertTrue(r.readLine().trim().equals("<rest_divide Pic_Value=\"99\"/>"));
+			assertTrue(r.readLine().trim().equals("</nonContiguousDataItem>"));
+			r.close();
+		} catch (Exception e)
+		{
+			fail("Cobol2XML threw an Exception");
+		}
+	}
+	
 	@Test
 	public void testProgramID()
 	{

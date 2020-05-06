@@ -37,8 +37,17 @@ public class Cobol implements PubliclyCloneable {
 	protected String nonContiguousDataItemFormat; //holds the formated of NonCotiguousDataItem
 	protected String nonContiguousDataItemName;
 	protected int pic;
+	protected String format; //the formated for a non contiguous data item
 
 	
+	public String getFormat()
+	{
+		return format;
+	}
+	public void setFormat(String format)
+	{
+		this.format = format;
+	}
 	public int getPic()
 	{
 		return pic;
