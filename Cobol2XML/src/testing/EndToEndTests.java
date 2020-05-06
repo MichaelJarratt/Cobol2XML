@@ -173,4 +173,26 @@ public class EndToEndTests {
 			fail("Cobol2XML threw an Exception");
 		}
 	}
+	
+	@Test
+	public void testDisplay() {
+		String[] args = new String[2];
+		args[0] = "endToEndTestInput/display.cbl"; // input file
+		args[1] = "endToEndTestInput/output.xml"; // output file
+
+		try {
+			Cobol2XML.main(args);
+			InputStream is = new FileInputStream(args[1]); // reads from output file
+			BufferedReader r = new BufferedReader(new InputStreamReader(is));
+			r.readLine();
+			r.readLine(); // skips two lines because they will always be generated regardless
+			assertTrue(r.readLine().trim().equals("<display>window erase</display>")); // asserts that the Division
+			assertTrue(r.readLine().trim().equals("<display>\"Base:  \" no</display>")); // asserts that the Division
+			assertTrue(r.readLine().trim().equals("<display>\"Base: \" current_base \" value: \" entry_char</display>")); // asserts that the Division
+			
+			r.close();
+		} catch (Exception e) {
+			fail("Cobol2XML threw an Exception");
+		}
+	}
 }
