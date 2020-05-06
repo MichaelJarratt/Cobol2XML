@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<cobol>
+    <display>window erase</display>
+    <display>"Base:  " no</display>
+    <display>"Value: " no</display>
+    <display>"Decimal  value: " entry_char</display>
+    <display>"Base: " current_base</display>
+    <display>testing other</display>
+</cobol>

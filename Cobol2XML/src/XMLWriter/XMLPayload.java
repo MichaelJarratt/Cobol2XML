@@ -58,6 +58,13 @@ public class XMLPayload {
 	
 	
 	public void addElements(Cobol c) {
+		
+		
+		String nonContiguousDataItemName = c.getNonContiguousDataItemName();
+		if(nonContiguousDataItemName != null) //if this line represents a nonContiguousDataItem
+		{
+			this.addNonContiguousDataItem(c.getLineNumber(),nonContiguousDataItemName,c.getPic(),c.getFormat());
+		}
 		/*
 		 * add display line
 		 */
@@ -151,10 +158,37 @@ public class XMLPayload {
 
 	}
 	
+	/*
+	 * generates XML for nonContiguousDataItem
+	 */
+ 	private void addNonContiguousDataItem(int lineNumber, String name, int pic,String format)
+	{
+		Element cobolName = doc.createElement("nonContiguousDataItem"); //element holding all information for nonContiguousDataItem
+		
+		//name of line
+		Element nonContiguousDataItemID = doc.createElement("nonContiguousDataItem");
+		nonContiguousDataItemID.setAttribute("name", name); //sets name attribute
+		cobolName.appendChild(nonContiguousDataItemID); //appends name element to parent
+		
+		//line number
+		Element LineID = doc.createElement(name);
+		LineID.setAttribute("Line_Number", ""+lineNumber);
+		cobolName.appendChild(LineID);
+		
+		//pic value
+		Element picID = doc.createElement(name);
+		picID.setAttribute("Pic_Value", ""+pic);
+		cobolName.appendChild(picID);
+		
+		Element formatID = doc.createElement(name);
+		formatID.setAttribute("format", format);
+		cobolName.appendChild(formatID);
+		
+		rootElement.appendChild(cobolName);
+	}
 
-	
-	
- 	private void addConstantValueElement(String constantName, double constantValue, int lineNumber)
+
+	private void addConstantValueElement(String constantName, double constantValue, int lineNumber)
 	{
  		Element cobolname = doc.createElement("constant");
  		

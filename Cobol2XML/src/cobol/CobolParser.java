@@ -66,7 +66,11 @@ public class CobolParser {
 		
 		a.add( constantValue() );
 		
-		a.add( commentLine());
+		a.add( commentLine() );
+		
+		a.add( nonContiguousDataItem() );
+		
+		a.add( nonContiguousDataItemWithFormat());
 		
 		//end of our changes
 		
@@ -90,6 +94,40 @@ public class CobolParser {
 		s.add(new CaselessLiteral("display").discard()); //a word which can be ignored
 		s.add(new QuotedString());
 		s.add(new Word().setAssembler(new DisplayLineAssembler())); //a random assortment of strings after it
+		return s;
+	}
+
+	/*
+	 * returns a Sequence that will recognise:
+	 * 
+	 *  77 [name] pic [num]
+	 */
+	private Parser nonContiguousDataItem()
+	{
+		Sequence s = new Sequence(); //sequence of tokens this line is made of
+		s.add(new Num()); //line has to start with 77
+		s.add(new Word()); //name of the data item
+		s.add(new CaselessLiteral("pic").discard()); //"pic" needed to identify line but not to write to XML
+		s.add(new Num());
+		s.setAssembler(new NonContiguousDataItemAssembler());
+		return s;
+	}
+	
+	/*
+	 * returns a Sequence that will recognise:
+	 * 
+	 *  77 [name] pic [num] [format(word)]
+	 */
+	private Parser nonContiguousDataItemWithFormat()
+	{
+		Sequence s = new Sequence(); //sequence of tokens this line is made of
+		s.add(new Num()); //line has to start with 77
+		s.add(new Word()); //name of the data item
+		s.add(new CaselessLiteral("pic").discard()); //"pic" needed to identify line but not to write to XML
+		s.add(new Num());
+		s.add(new Word());
+		s.add(new Symbol('.').discard());
+		s.setAssembler(new NonContiguousDataItemAssembler());
 		return s;
 	}
 	

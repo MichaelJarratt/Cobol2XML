@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <cobol>
+<<<<<<< HEAD
     <division>identification</division>
     <Program-ID>base</Program-ID>
     <day-date-written>7</day-date-written>
@@ -32,4 +33,73 @@
     <comment>convert from decimal to base system</comment>
     <comment>convert from base to dicimal system</comment>
     <comment>allineamento a destra della variabile entry_char ( ver 2.3 0.1 o sup )</comment>
+=======
+<division>identification</division>
+<Program-ID>base</Program-ID>
+<day-date-written>7</day-date-written>
+<month-date-written>mar</month-date-written>
+<year-date-written>1995</year-date-written>
+<division>data</division>
+<section>working-storage</section>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="ind"/>
+<ind Line_Number="77"/>
+<ind Pic_Value="99"/>
+<ind format="comp-x"/>
+</nonContiguousDataItem>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="rest_divide"/>
+<rest_divide Line_Number="77"/>
+<rest_divide Pic_Value="99"/>
+<rest_divide format="Default"/>
+</nonContiguousDataItem>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="w_number"/>
+<w_number Line_Number="1"/>
+<w_number Pic_Value="9"/>
+<w_number format="Default"/>
+</nonContiguousDataItem>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="entry_number"/>
+<entry_number Line_Number="1"/>
+<entry_number Pic_Value="9"/>
+<entry_number format="Default"/>
+</nonContiguousDataItem>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="current_base"/>
+<current_base Line_Number="1"/>
+<current_base Pic_Value="9"/>
+<current_base format="Default"/>
+</nonContiguousDataItem>
+<constant>
+<constant name="base_2"/>
+<base_2 Line_Number="88"/>
+<base_2 Value="2.0"/>
+</constant>
+<constant>
+<constant name="base_8"/>
+<base_8 Line_Number="88"/>
+<base_8 Value="8.0"/>
+</constant>
+<constant>
+<constant name="base_10"/>
+<base_10 Line_Number="88"/>
+<base_10 Value="10.0"/>
+</constant>
+<constant>
+<constant name="base_16"/>
+<base_16 Line_Number="88"/>
+<base_16 Value="16.0"/>
+</constant>
+<nonContiguousDataItem>
+<nonContiguousDataItem name="dec_value"/>
+<dec_value Line_Number="5"/>
+<dec_value Pic_Value="99"/>
+<dec_value format="Default"/>
+</nonContiguousDataItem>
+<division>procedure</division>
+<comment>convert from decimal to base system</comment>
+<comment>convert from base to dicimal system</comment>
+<comment>allineamento a destra della variabile entry_char ( ver 2.3 0.1 o sup )</comment>
+>>>>>>> 214ea453e1f05a2c0b8b43734e5fe367af33f76d
 </cobol>
