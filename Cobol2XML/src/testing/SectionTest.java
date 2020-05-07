@@ -1,3 +1,4 @@
+package testing;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -9,12 +10,9 @@ import parse.Parser;
 import parse.tokens.TokenAssembly;
 import parse.tokens.Tokenizer;
 
-public class SectionStorageTest {
+public class SectionTest {
 
 	@Test
-	/*
-	 * tests that a section line can be parsed and that the correct values are set in the Cobol instance
-	 */
 	public void testSectionStorage() {
 		Tokenizer t = CobolParser.tokenizer();
 		Parser p = CobolParser.start();

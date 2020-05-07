@@ -1,3 +1,4 @@
+package testing;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -12,9 +13,6 @@ import parse.tokens.Tokenizer;
 public class ConstantValueTest {
 
 	@Test
-	/*
-	 * tests that a constant value line can be parsed and that the correct values are set in the Cobol instance
-	 */
 	public void testConstantValue() {
 		Tokenizer t = CobolParser.tokenizer(); // empty when created
 		Parser p = CobolParser.start(); // collection of parsers (ConstantValue is one such parser)
