@@ -309,6 +309,11 @@ public class Cobol implements PubliclyCloneable {
 		return buf.toString();
 	}
 
+	/*
+	 * Return displayLine with the input string prepended.
+	 * 
+	 * @return displayLine with the input string prepended
+	 */
 	public void prependToDisplayLine(String s) {
 		displayLine = (s + " ") + displayLine;
 	}

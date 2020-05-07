@@ -141,7 +141,7 @@ public class CobolParser {
 		Sequence s = new Sequence(); // constant value line composed of
 		s.add(new Num()); // a number
 		s.add(new Word()); // a word
-		s.add(new CaselessLiteral("value")); // a word which can be ignored
+		s.add(new CaselessLiteral("value"));
 		s.add(new Num()); // a number
 		s.setAssembler(new ConstantValueAssembler());
 		return s;

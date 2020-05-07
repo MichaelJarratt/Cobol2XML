@@ -15,11 +15,11 @@ public class EndToEndTests {
 
 	@Test
 	/*
-	 * tests the two types of non contiguous data items, one with a specified format and one without.
-	 * the specified format should be shown and the none specified format should be "default".
+	 * tests the two types of non contiguous data items, one with a specified format
+	 * and one without. the specified format should be shown and the none specified
+	 * format should be "default".
 	 */
-	public void testNonContiguousDataItem()
-	{
+	public void testNonContiguousDataItem() {
 		String[] args = new String[2];
 		args[0] = "endToEndTestInput/nonContiguousDataItem.cbl"; // input file
 		args[1] = "endToEndTestInput/output.xml"; // output file
@@ -35,7 +35,7 @@ public class EndToEndTests {
 			assertTrue(r.readLine().trim().equals("<rest_divide Pic_Value=\"99\"/>"));
 			assertTrue(r.readLine().trim().equals("<rest_divide format=\"comp-x\"/>"));
 			assertTrue(r.readLine().trim().equals("</nonContiguousDataItem>"));
-			r.readLine(); //skips lines that will be the same
+			r.readLine(); // skips lines that will be the same
 			r.readLine();
 			r.readLine();
 			r.readLine();
@@ -184,7 +184,7 @@ public class EndToEndTests {
 			fail("Cobol2XML threw an Exception");
 		}
 	}
-	
+
 	@Test
 	public void testDisplay() {
 		String[] args = new String[2];
@@ -197,10 +197,14 @@ public class EndToEndTests {
 			BufferedReader r = new BufferedReader(new InputStreamReader(is));
 			r.readLine();
 			r.readLine(); // skips two lines because they will always be generated regardless
-			assertTrue(r.readLine().trim().equals("<display>window erase</display>")); // asserts that the Division
-			assertTrue(r.readLine().trim().equals("<display>\"Base:  \" no</display>")); // asserts that the Division
-			assertTrue(r.readLine().trim().equals("<display>\"Base: \" current_base \" value: \" entry_char</display>")); // asserts that the Division
-			
+			assertTrue(r.readLine().trim().equals("<display>window erase</display>")); // asserts that the 1st Display
+																						// Line outputs correctly
+			assertTrue(r.readLine().trim().equals("<display>\"Base:  \" no</display>")); // asserts that the 2nd Display
+																							// Line with quoted text
+																							// outputs correctly
+			assertTrue(
+					r.readLine().trim().equals("<display>\"Base: \" current_base \" value: \" entry_char</display>")); // asserts that the 3rd Display Line with double quoted text outputs correctly
+
 			r.close();
 		} catch (Exception e) {
 			fail("Cobol2XML threw an Exception");
