@@ -15,11 +15,11 @@ public class DisplayLineAssembler extends Assembler {
 	@Override
 	public void workOn(Assembly a) {
 		Cobol c = new Cobol(); // represents line of code
-		Token t = (Token) a.pop(); // represents a single word in the line
+		Token t = (Token) a.pop(); // represents the last word in the line
 
 		c.setDisplayLine(t.sval());
 
-		c.prependToDisplayLine(((Token) a.pop()).sval()); // prepend the first word
+		c.prependToDisplayLine(((Token) a.pop()).sval()); // prepend the first word to the last
 		a.setTarget(c);
 	}
 
